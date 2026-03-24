@@ -1,0 +1,11 @@
+baseURL = "https://ai-workshops.digital/"
+languageCode = "en-us"
+title = "ai-workshops.digital"
+enableRobotsTXT = true
+
+[params]
+  description = "Self-service AI automation frameworks for freelancers, solopreneurs, and small teams."
+  tagline = "AI automation frameworks you can run yourself"
+
+[markup.goldmark.renderer]
+  unsafe = true

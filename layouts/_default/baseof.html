@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ .Site.Title }} - Self-service AI automation tools</title>
+  <meta name="description" content="{{ .Site.Params.description }}" />
+  <meta property="og:title" content="{{ .Site.Title }}" />
+  <meta property="og:description" content="{{ .Site.Params.description }}" />
+  <meta name="theme-color" content="#8b5cf6" />
+  {{ $css := resources.Get "css/main.css" | minify }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+  <style>
+    .toggle-sun,.toggle-moon{display:none;pointer-events:none}
+    [data-theme="dark"]  .toggle-sun  {display:block}
+    [data-theme="light"] .toggle-moon {display:block}
+  </style>
+</head>
+<body>
+  {{ partial "nav.html" . }}
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script>
+    (function(){
+      var html = document.documentElement;
+      var stored = localStorage.getItem('theme') || 'dark';
+      html.setAttribute('data-theme', stored);
+      document.getElementById('theme-toggle').addEventListener('click', function(){
+        var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>
